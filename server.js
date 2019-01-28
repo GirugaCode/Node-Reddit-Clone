@@ -22,3 +22,6 @@ require('./data/reddit-db')
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+
+// Mocha Chai Testing
+module.exports = app;
