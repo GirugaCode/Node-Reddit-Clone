@@ -15,7 +15,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // Add after body parser initialization
 app.use(expressValidator())
 
+// Exporting Posts Controller
 require('./controllers/posts.js')(app)
+
+// Exporting Comments Controller
+require('./controllers/comments.js')(app)
 
 // Set db
 require('./data/reddit-db')
