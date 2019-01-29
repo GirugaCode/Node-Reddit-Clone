@@ -1,6 +1,7 @@
 const Post = require('../models/post');
 
 module.exports = app => {
+  // ROOT
   app.get("/", (req, res) => {
       Post.find({})
     .then(posts => {
@@ -14,6 +15,7 @@ module.exports = app => {
   app.get("/posts/new", (req, res) => {
     res.render('create-post')
   })
+
   // CREATE
   app.post("/posts", (req,res) => {
     // INSTANTIATE INSTANCE OF POST MODEL
@@ -25,8 +27,9 @@ module.exports = app => {
       return res.redirect('/');
     })
   });
+
+  // LOOK UP THE POST
   app.get("/posts/:id", function(req, res) {
-    // LOOK UP THE POST
     Post.findById(req.params.id)
       .then(post => {
         res.render("posts-show", { post });
@@ -35,4 +38,16 @@ module.exports = app => {
         console.log(err.message);
       });
   });
+
+  // SUBREDDIT
+  app.get("/n/:subreddit", function(req,res) {
+    Post.find({ subreddit: req.params.subreddit })
+      .then(posts => {
+        res.render("posts-index", { posts });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
+
 };
