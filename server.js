@@ -15,6 +15,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // Add after body parser initialization
 app.use(expressValidator())
 
+// Exporting Auth Controller
+require('./controllers/auth.js')(app);
+
 // Exporting Posts Controller
 require('./controllers/posts.js')(app)
 
