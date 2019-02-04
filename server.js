@@ -1,3 +1,5 @@
+var cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
 const express = require('express')
 const exphbs = require('express-handlebars')
 const app = express()
@@ -14,6 +16,12 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // Add after body parser initialization
 app.use(expressValidator())
+
+// Add this after you initialize express
+app.use(cookieParser());
+
+// Exporting .env secret
+require('dotenv').config();
 
 // Exporting Auth Controller
 require('./controllers/auth.js')(app);
