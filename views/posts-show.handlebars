@@ -20,7 +20,8 @@
       <ul>
         {{#each post.comments}}
         <li class="list-group-item">
-          {{this.content}}
+          <p>{{this.content}}</p>
+          <p class = "text-right">{{this.author.username}}</p>
         </li>
         {{/each}}
       </ul>
