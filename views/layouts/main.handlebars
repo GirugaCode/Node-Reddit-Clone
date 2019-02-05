@@ -38,7 +38,9 @@
       </li>
     </ul>
     <!-- New Post Button -->
-    <a href="/posts/new" class="btn btn-primary navbar-btn">New Post</a>
+    {{#if currentUser}}
+      <a href="/posts/new" class="btn btn-primary navbar-btn">New Post</a>
+    {{/if}}
   </div>
 </nav>
     {{{body}}}

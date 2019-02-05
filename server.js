@@ -20,6 +20,21 @@ app.use(expressValidator())
 // Add this after you initialize express
 app.use(cookieParser());
 
+// Checking if the user is authenticated
+var checkAuth = (req, res, next) => {
+  console.log("Checking authentication");
+  if (typeof req.cookies.nToken === "undefined" || req.cookies.nToken === null) {
+    req.user = null;
+  } else {
+    var token = req.cookies.nToken;
+    var decodedToken = jwt.decode(token, { complete: true }) || {};
+    req.user = decodedToken.payload;
+  }
+
+  next();
+};
+app.use(checkAuth);
+
 // Exporting .env secret
 require('dotenv').config();
 
