@@ -1,5 +1,5 @@
 const Post = require('../models/post');
-
+const User = require('../models/user')
 module.exports = app => {
   // ROOT
   app.get("/", (req, res) => {
@@ -30,14 +30,19 @@ module.exports = app => {
               .save()
               .then(post => {
                   return User.findById(req.user._id);
+
               })
               .then(user => {
-                  user.posts.unshift(post);
-                  user.save();
+                  console.log(user)
+                  user.post.unshift(post);
+                  return user.save();
                   // REDIRECT TO THE NEW POST
-                  res.redirect(`/posts/${post._id}`);
+              })
+              .then((user) => {
+                res.redirect(`/posts/${post._id}`);
               })
               .catch(err => {
+
                   console.log(err.message);
               });
       } else {
