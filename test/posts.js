@@ -12,7 +12,7 @@ const User = require('../models/user');
 
 chai.should();
 chai.use(chaiHttp);
-const agent = chai.request.agent(server);
+const agent = chai.request.agent(app);
 describe('Posts', function() {
 
   before((done) => {
@@ -35,6 +35,13 @@ describe('Posts', function() {
       url: 'https://www.google.com',
       summary: 'post summary',
   };
+
+  const user = {
+    username: 'poststest',
+    password: 'testposts'
+  }
+
+
 
   // TEST POST
   it('Should create with valid attributes at POST /posts', function(done) {
@@ -61,7 +68,23 @@ describe('Posts', function() {
           done(err);
       });
   });
-    after(function () {
-    Post.findOneAndDelete(newPost);
+  after(function (done) {
+    Post.findOneAndDelete(newPost)
+    .then(function (res) {
+        agent.close()
+
+        User.findOneAndDelete({
+            username: user.username
+        })
+          .then(function (res) {
+              done()
+          })
+          .catch(function (err) {
+              done(err);
+          });
+    })
+    .catch(function (err) {
+        done(err);
     });
+  });
 });
