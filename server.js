@@ -19,7 +19,7 @@ app.use(expressValidator())
 
 // Add this after you initialize express
 app.use(cookieParser());
-
+app.use(express.static('public'))
 // Checking if the user is authenticated
 var checkAuth = (req, res, next) => {
   console.log("Checking authentication");
@@ -42,10 +42,12 @@ require('dotenv').config();
 require('./controllers/auth.js')(app);
 
 // Exporting Posts Controller
-require('./controllers/posts.js')(app)
+require('./controllers/posts.js')(app);
 
 // Exporting Comments Controller
-require('./controllers/comments.js')(app)
+require('./controllers/comments.js')(app);
+
+require('./controllers/replies.js')(app);
 
 // Set db
 require('./data/reddit-db')

@@ -17,13 +17,12 @@
           <button type="submit" class="btn btn-primary">Save</button>
         </div>
       </form>
-      <ul>
+      <ul style="list-style-type: none;">
         {{#each post.comments}}
-        <li class="list-group-item">
-          <p>{{this.content}}</p>
-          <p class = "text-right">{{this.author.username}}</p>
-        </li>
+        <li class="parentComment">
+          {{> comment comment=this postId=../post._id}}
         {{/each}}
+      </li>
       </ul>
     </body>
 </html>
