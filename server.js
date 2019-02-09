@@ -19,7 +19,8 @@ app.use(expressValidator())
 
 // Add this after you initialize express
 app.use(cookieParser());
-app.use(express.static('public'))
+
+app.use(express.static('public'));
 // Checking if the user is authenticated
 var checkAuth = (req, res, next) => {
   console.log("Checking authentication");
@@ -47,6 +48,7 @@ require('./controllers/posts.js')(app);
 // Exporting Comments Controller
 require('./controllers/comments.js')(app);
 
+// Exporting Replies Controller
 require('./controllers/replies.js')(app);
 
 // Set db
