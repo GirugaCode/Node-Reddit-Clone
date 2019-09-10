@@ -10,19 +10,19 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.3",
-    "bootstrap": "^4.2.1",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.3.1",
     "cookie-parse": "^0.4.0",
-    "cookie-parser": "^1.4.3",
+    "cookie-parser": "^1.4.4",
     "dotenv": "^6.2.0",
-    "express-handlebars": "^3.0.0",
+    "express-handlebars": "^3.1.0",
     "express-validator": "^5.3.1",
-    "handlebars": "^4.0.12",
-    "jsonwebtoken": "^8.4.0"
+    "handlebars": "^4.2.0",
+    "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "chai-http": "^4.2.1",
+    "chai-http": "^4.3.0",
     "mocha": "^5.2.0"
   }
 }
