@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
 const User = require("../models/user");
+const validator = require("validator")
 
 module.exports = (app) => {
   //SIGN UP FORM
@@ -23,6 +24,10 @@ module.exports = (app) => {
     // Create User
     const user = new User(req.body);
 
+    if (!validator.isEmail(user.username)) {
+      return res.status(401).send({ message: "Invalid Email" });
+    }
+    
     user
       .save()
       .then(user => {
@@ -45,6 +50,9 @@ module.exports = (app) => {
         if (!user) {
           // User not found
           return res.status(401).send({ message: "Wrong Username or Password" });
+        }
+        else if (!validator.isEmail(username)) {
+          return res.status(401).send({ message: "Invalid Email" });
         }
         // Check the password
         user.comparePassword(password, (err, isMatch) => {
