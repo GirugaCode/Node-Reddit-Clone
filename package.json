@@ -15,7 +15,7 @@
     "cookie-parse": "^0.4.0",
     "cookie-parser": "^1.4.4",
     "dotenv": "^6.2.0",
-    "express-handlebars": "^3.1.0",
+    "express-handlebars": "^5.3.1",
     "express-validator": "^5.3.1",
     "handlebars": "^4.2.0",
     "jsonwebtoken": "^8.5.1"
